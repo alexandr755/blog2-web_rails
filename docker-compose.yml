@@ -1,0 +1,13 @@
+version: '3'
+services:
+#  db:
+#    image: postgres
+  web_rails:
+    build: .
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - ./app:/myapp
+    ports:
+      - "30000:3000"
+#    depends_on:
+#      - db
