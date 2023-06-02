@@ -3,11 +3,26 @@ services:
 #  db:
 #    image: postgres
   web_rails:
+    container_name: rails_test
     build: .
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     volumes:
-      - ./app:/myapp
+      - ./:/myapp
     ports:
-      - "30000:3000"
+      - "30010:3000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.rails_tot.entrypoints=https"
+      - "traefik.http.routers.rails_tot.rule=Host(`rails.tot.biz.ua`)"
+      - "traefik.http.routers.rails_tot.tls=true"
+      - "traefik.http.routers.rails_tot.tls.certresolver=letsEncrypt"
+      - "traefik.http.services.rails_tot-service.loadbalancer.server.port=3000"
+    networks:
+      - traefik-shared
+ 
 #    depends_on:
 #      - db
+networks:
+  traefik-shared:
+    name: traefik-shared
+    external: true
