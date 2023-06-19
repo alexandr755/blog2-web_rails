@@ -1,5 +1,9 @@
 pipeline {
-    properties([disableConcurrentBuilds(), buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([githubPush()])])
+    options {
+    disableConcurrentBuilds()
+    buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5'))
+    pipelineTriggers([githubPush()])
+    }
     agent {label '192.168.3.145'}
     environment {
         def int lastrelis = "${env.BUILD_NUMBER}"
