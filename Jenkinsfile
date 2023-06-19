@@ -3,6 +3,9 @@ pipeline {
     disableConcurrentBuilds()
     buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5'))
     }
+    triggers {
+    githubPush()
+    } 
     agent {label '192.168.3.145'}
     environment {
         def int lastrelis = "${env.BUILD_NUMBER}"
