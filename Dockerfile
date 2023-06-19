@@ -10,4 +10,4 @@ ADD . /myapp
 # Выполняем миграции базы данных
 RUN rails db:migrate
 # Запускаем сервер приложения на порту 3000
-CMD ["rails", "server", "-b", "0.0.0.0"]
+#CMD ["rails", "server", "-b", "0.0.0.0"]
