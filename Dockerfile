@@ -8,7 +8,7 @@ ADD Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
 ADD . /myapp
 # Выполняем миграции базы данных
-RUN rake db:drop rake db:create rake db:schema:load RAILS_ENV=development
+RUN rake db:setup RAILS_ENV=development
 RUN rails db:migrate RAILS_ENV=development
 # Запускаем сервер приложения на порту 3000
 #CMD ["rails", "server", "-b", "0.0.0.0"]
