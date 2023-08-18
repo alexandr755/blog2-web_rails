@@ -9,6 +9,7 @@ pipeline {
     agent {label '192.168.3.145'}
     environment {
         def int lastrelis = "${env.BUILD_NUMBER}"
+        recipientEmails = "buk.av@tot.biz.ua, prokoleso_logs@tot.biz.ua"
     }
 
     stages {
@@ -67,7 +68,7 @@ pipeline {
     }
     post {
     always {
-      mail to: 'buk.av@tot.biz.ua',
+        mail to: "${recipientEmails}",
         subject: "Status of pipeline: ${currentBuild.fullDisplayName} GIT_COMMIT: ${env.GIT_COMMIT} ",
         body: "GIT_COMMIT: ${env.GIT_COMMIT} / ${currentBuild.fullDisplayName} has result ${currentBuild.result}"
     }
