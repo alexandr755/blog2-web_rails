@@ -68,8 +68,8 @@ pipeline {
     post {
     always {
       mail to: 'buk.av@tot.biz.ua',
-        subject: "Status of pipeline: ${env.PROJECT_NAME} / ${currentBuild.fullDisplayName}",
-        body: "${env.PROJECT_NAME} / ${env.BUILD_URL} has result ${currentBuild.result}  Active user is now ${params.USERID}"
+        subject: "Status of pipeline: ${currentBuild.fullDisplayName} GIT_COMMIT: ${env.GIT_COMMIT} ",
+        body: "GIT_COMMIT: ${env.GIT_COMMIT} / ${currentBuild.fullDisplayName} has result ${currentBuild.result}"
     }
   }
     
